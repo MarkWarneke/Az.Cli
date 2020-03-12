@@ -13,10 +13,13 @@ Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cl
 
 ```python
 from az.cli import az, ExitStatus
-exitCode, resultSet = az("group show -n test")
+# AzResult = namedtuple('AzResult', ['exit_code', 'out', 'log'])
+exit_code, result_dict, logs = az("group show -n test")
 ```
 
-You can also interactively traverse the resultSet in python interactive. Navigate into `src` and run `python3`. Import the library by `from az.cli import az` and run any `az` command e.g. `az("group list")` to fetch all resource groups.
+You can run the command interactively to traverse the dictionary. 
+Navigate to `src`, run `python3`. 
+Import the library `from az.cli import az`, run  `az` command by invoke `az("<my command>")` to invoke Azure CLI.
 
 ```python
 # cd src
