@@ -2,12 +2,11 @@
 # app.py
 import pprint
 import sys
-sys.path.append('../src/az')
+
+from az.cli import az, ExitStatus
 
 
-if __name__ == "__main__":
-    from az.cli import az, ExitStatus
-
+def main():
     pp = pprint.PrettyPrinter(indent=4)
 
     code, result = az("group show -n test")
@@ -16,3 +15,8 @@ if __name__ == "__main__":
         pp.pprint(result)
     else:
         print("error")
+
+
+if __name__ == "__main__":
+    # execute only if run as a script
+    main()
