@@ -1,6 +1,7 @@
 # --------------------------------------------------------------------------------------------
 # Copyright (c) Mark Warneke <warneke.mark@gmail.com> 2020
 # Licensed under the MIT License. See License.txt in the project root for license information.
+# Contribution Jiashuo Li https://github.com/jiasli/pyaz
 # Based on https://github.com/Azure/azure-cli/blob/8e369b9d2d63ddf5c6678ee710905bf9e5028f99/src/azure-cli-core/azure/cli/core/__init__.py
 # --------------------------------------------------------------------------------------------
 
