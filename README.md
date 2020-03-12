@@ -17,9 +17,9 @@ from az.cli import az, ExitStatus
 exit_code, result_dict, logs = az("group show -n test")
 ```
 
-You can run the command interactively to traverse the dictionary. 
-Navigate to `src`, run `python3`. 
-Import the library `from az.cli import az`, run  `az` command by invoke `az("<my command>")` to invoke Azure CLI.
+You can run the command interactively to traverse the dictionary.  
+Navigate to `src`, run `python3`.  
+Import the library `from az.cli import az`, run  `az` command by invoke `az("<my command>")` to invoke Azure CLI.  
 
 ```python
 # cd src
