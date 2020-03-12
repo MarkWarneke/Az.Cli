@@ -4,6 +4,7 @@ Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cl
 
 ## Example
 
-```
+```python
+from az.cli import az, ExitStatus
 code, result = az("group show -n test")
 ```
