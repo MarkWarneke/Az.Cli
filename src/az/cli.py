@@ -2,7 +2,8 @@
 # Copyright (c) Mark Warneke <warneke.mark@gmail.com> 2020
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # Contribution Jiashuo Li https://github.com/jiasli/pyaz
-# Based on https://github.com/Azure/azure-cli/blob/8e369b9d2d63ddf5c6678ee710905bf9e5028f99/src/azure-cli-core/azure/cli/core/__init__.py
+# Based on https://github.com/Azure/azure-cli/blob/dev/src/azure-cli-core/azure/cli/core/__init__.py
+# commit 8e369b9d2d63ddf5c6678ee710905bf9e5028f99
 # --------------------------------------------------------------------------------------------
 
 import sys
@@ -12,13 +13,10 @@ import shlex
 import logging
 from collections import namedtuple
 
-# https://github.com/Azure/azure-cli/blob/8e369b9d2d63ddf5c6678ee710905bf9e5028f99/src/azure-cli-core/azure/cli/core/__init__.py
 from azure.cli.core import get_default_cli
 from knack.log import CLI_LOGGER_NAME
 
 # Create default shell to run commands
-# See implementation example here:
-# https://github.com/Azure/azure-cli/blob/8e369b9d2d63ddf5c6678ee710905bf9e5028f99/src/azure-cli-core/azure/cli/core/__init__.py
 _cli = get_default_cli()
 
 AzResult = namedtuple('AzResult', ['exit_code', 'out', 'log'])
@@ -37,7 +35,8 @@ def az(command):
     """
     Invoke Azure CLI command with a Python function call "az" command based on argument
     Reference can be found here:
-    https://github.com/Azure/azure-cli/blob/fc532b4dee320e7f20994d548f284729a0c66ae8/src/azure-cli-testsdk/azure/cli/testsdk/base.py#L252
+    https://github.com/Azure/azure-cli/blob/dev/src/azure-cli-testsdk/azure/cli/testsdk/base.py#L252
+    commit fc532b4dee320e7f20994d548f284729a0c66ae8
 
     exit_code can be one of
         0: succeed
@@ -107,8 +106,8 @@ def _parseResult(buffer):
             return result
         else:
             return json.loads("{}")
-    except:
-        raise BaseException("Error load value from StringIO")
+    except SystemExit as ex:
+        raise BaseException("Error load value from StringIO {}".format(ex))
 
 
 if __name__ == "__main__":

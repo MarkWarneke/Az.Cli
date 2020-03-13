@@ -8,7 +8,6 @@ with open("README.md", "r") as fh:
 with open('requirements.txt') as f:
     required = f.read().splitlines()
 
-    
 CLASSIFIERS = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
@@ -22,7 +21,7 @@ CLASSIFIERS = [
 
 setuptools.setup(
     name="az.cli",
-    version="VERSION,
+    version=VERSION,
     author="Mark Warneke",
     author_email="warneke.mark@gmail.com",
     classifiers=CLASSIFIERS,

@@ -35,3 +35,7 @@ jobs:
       run: |
         pip install pytest
         pytest
+      env: # Or as an environment variable
+        ENV_SP_NAME: ${{ secrets.AZ_SP_APP_ID }}
+        ENV_SP_SECRET: ${{ secrets.AZ_SP_SECRET }}
+        ENV_SP_TENANT: ${{ secrets.AZ_SP_TENANT }}
