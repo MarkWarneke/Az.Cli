@@ -7,7 +7,6 @@ Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cl
 - install [python3](https://www.python.org/downloads/)
 - install `REQUIREMENTS.txt` use `make init`
 - login to azure using `az login` (this can also be done interactively using the library) see [Sign in using a service principal](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest#sign-in-using-a-service-principalt)
-- run `python3 src`
 
 ## Example
 
@@ -55,26 +54,23 @@ make create
 
 ### Run
 
-```bash
-make run
+After the container is build & created you can run the `az.cli` interactivly. 
 
+```bash
+# Run docker run
+make run
 ```
 
 see [interactive](#interactive)
 
 ### Local Development
 
-To develop locally make sure to install Python3.
-I recommend to use Python3 virtual environments:
-
-```bash
-sudo apt-get install python3-venv
-```
-
-Then run:
+To develop locally make sure to [install Python3](https://www.python.org/downloads/).
+I recommend to use [Python3 virtual environments](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv).
 
 ```bash
 python3 -m venv env
+source env/bin/activate
 make init
 ```
 
