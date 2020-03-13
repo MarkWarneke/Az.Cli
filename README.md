@@ -78,10 +78,6 @@ python3 -m venv env
 make init
 ```
 
-## Known Bugs: Az login
+## Known Bugs
 
-az login will wait for interactive authentication, the logs are not returned so the execution is blocked.
-
-```python
-az('login')
-```
+- `az('login') https://github.com/MarkWarneke/Az.Cli/issues/1
