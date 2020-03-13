@@ -1,6 +1,6 @@
 # Az.Cli
 
-Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cli-core/azure/cli/core/__init__.py) interface to execute `az` [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) commands in python.
+Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cli-core/azure/cli/core/__init__.py) interface to execute `az` [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) commands in python. The succesfull command will return a named tuple `AzResult = namedtuple('AzResult', ['exit_code', 'result_dict', 'log'])`. The [`error_code`](https://docs.python.org/2/library/sys.html#sys.exit) where 0 == success. A `result_dict` containing successfull return as a python dictionary. On failure (`error_code` > 0) a log message inside `log` as a string.
 
 ## Usage
 
@@ -39,14 +39,16 @@ Import the library `from az.cli import az` and run  any command by executing th
 # cd src
 # python3
 from az.cli import az
-az("group list") # list return tuple (exitCode, resultSet)
-az("group list")[1] # return resultSet content <dict>
-az("group list")[1][0]['id'] # Enumerate id of first element in resultSet
+# on Success, the `error_code` is 1 and the result_dict contains the output
+az("group list") # list return tuple (exit_code, result_dict, log)
+az("group list")[0] # 1
+az("group list")[1] # print result_dict 
+az("group list")[1][0]['id'] # enumerate the id of the first element in dictionary
 
-# On Error
-az("group show -n does-not-exsist") # list return tuple (exitCode, resultSet)
+# On Error, the `error_code` will be != 1 and the log is present
+az("group show -n does-not-exsist") # list return tuple (exit_code, result_dict, log)
 az("group show -n does-not-exsist")[0] # 3
-az("group show -n does-not-exsist")[2] # Print the logs
+az("group show -n does-not-exsist")[2] # print the log
 ```
 
 ## Build
