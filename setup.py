@@ -7,8 +7,8 @@ with open('REQUIREMENTS.txt') as f:
     required = f.read().splitlines()
 
 setuptools.setup(
-    name="az_cli-MarkWarneke",  # Replace with your own username
-    version="0.3",
+    name="az.cli",
+    version="0.1",
     author="Mark Warneke",
     author_email="warneke.mark@gmail.com",
     description="An interface to execute Azure CLI commands using Python",

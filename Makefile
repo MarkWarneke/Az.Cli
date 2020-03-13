@@ -19,8 +19,11 @@ exec: start
 package: clean
 	python3 setup.py sdist bdist_wheel
 
-upload: package
+upload-test: package
 	python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+uploadt: package
+	python3 -m twine upload --repository-url https://pypi.org/legacy/ dist/*
 
 clean:
 	rm -rf *.egg-info
