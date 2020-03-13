@@ -68,6 +68,8 @@ def az(command):
         # Split command https://docs.python.org/3/library/shlex.html#shlex.split
         args = shlex.split(command)
 
+        # FIXME: Intercept 'loging' command, it blocks the execution
+
         # exit code 0 or 1
         exit_code = _cli.invoke(
             args, out_file=stdout_buf) or SUCCESS_CODE

@@ -10,7 +10,8 @@ RUN apk --update add --virtual build-dependencies libffi-dev openssl-dev python-
 
 
 COPY src/ /app
+COPY import.py /app
 WORKDIR /app
 
 # Argument to python command
-ENTRYPOINT ["python"]
+ENTRYPOINT ["python", "-i", "import.py"]

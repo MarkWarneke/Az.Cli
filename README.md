@@ -27,8 +27,8 @@ else:
 ### Interactive
 
 You can run the command interactively to traverse the dictionary.
-Navigate to `src`, run `python3`.
-Import the library `from az.cli import az`, run  `az` command by invoke `az("<my command>")` to invoke Azure CLI.
+Navigate to `src` and run `python3`.
+Import the library `from az.cli import az` and run  any command by executing the method `az("<my command>")` to invoke Azure CLI.
 
 ```python
 # cd src
@@ -49,20 +49,14 @@ az("group show -n does-not-exsist")[2] # Print the logs
 To build the image run the following in order.
 
 ```bash
-# Runs docker build
-make build
-
-# Runs docker create
+# Runs docker build & create
 make create
-
-# Runs docker start and exec
-make exec
 ```
 
 ### Run
 
 ```bash
-make exec
+make run
 
 ```
 
@@ -82,4 +76,12 @@ Then run:
 ```bash
 python3 -m venv env
 make init
+```
+
+## Known Bugs: Az login
+
+az login will wait for interactive authentication, the logs are not returned so the execution is blocked.
+
+```python
+az('login')
 ```
