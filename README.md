@@ -80,4 +80,4 @@ make init
 
 ## Known Bugs
 
-- `az('login') https://github.com/MarkWarneke/Az.Cli/issues/1
+- `az('login')` https://github.com/MarkWarneke/Az.Cli/issues/1
