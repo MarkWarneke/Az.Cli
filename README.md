@@ -1,7 +1,7 @@
 # Az.Cli
 
-[![Python](https://img.shields.io/pypi/pyversions/az.cli.svg?maxAge=2592000)](https://pypi.python.org/pypi/az.cli)!  
-[Build Status](https://github.com/MarkWarneke/Az.Cli/workflows/Python%20application/badge.svg?branch=dev)
+[![Python](https://img.shields.io/pypi/pyversions/az.cli.svg?maxAge=2592000)](https://pypi.python.org/pypi/az.cli)
+![Build Status](https://github.com/MarkWarneke/Az.Cli/workflows/Python%20application/badge.svg?branch=dev)
 
 Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cli-core/azure/cli/core/__init__.py) interface to execute `az` [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) commands in python. 
 
