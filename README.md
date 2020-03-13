@@ -1,6 +1,8 @@
 # Az.Cli
 
-Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cli-core/azure/cli/core/__init__.py) interface to execute `az` [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) commands in python. The succesfull command will return a named tuple `AzResult = namedtuple('AzResult', ['exit_code', 'result_dict', 'log'])`. The [`error_code`](https://docs.python.org/2/library/sys.html#sys.exit) where 0 == success. A `result_dict` containing successfull return as a python dictionary. On failure (`error_code` > 0) a log message inside `log` as a string.
+Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cli-core/azure/cli/core/__init__.py) interface to execute `az` [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) commands in python. 
+
+The method returns a named tuple `AzResult = namedtuple('AzResult', ['exit_code', 'result_dict', 'log'])`. The [`error_code`](https://docs.python.org/2/library/sys.html#sys.exit) where 0 == success. A `result_dict` containing successfull return as a python dictionary. On failure (`error_code` > 0) a log message inside `log` as a string.
 
 ## Usage
 
