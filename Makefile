@@ -22,8 +22,8 @@ package: clean
 upload-test: package
 	python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
-uploadt: package
-	python3 -m twine upload --repository-url https://pypi.org/legacy/ dist/*
+upload: package
+	python3 -m twine upload dist/*
 
 clean:
 	rm -rf *.egg-info
