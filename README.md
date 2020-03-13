@@ -21,7 +21,7 @@ Under the hood the package uses the [~/.azure](https://github.com/Azure/azure-cl
 ```python
 from az.cli import az
 
-# AzResult = namedtuple('AzResult', ['exit_code', 'out', 'log'])
+# AzResult = namedtuple('AzResult', ['exit_code', 'result_dict', 'log'])
 exit_code, result_dict, logs = az("group show -n test")
 
 # On 0 (SUCCESS) print result_dict, otherwise get info from `logs`
@@ -41,9 +41,9 @@ Import the library `from az.cli import az` and run  any command by executing th
 # cd src
 # python3
 from az.cli import az
-# on Success, the `error_code` is 1 and the result_dict contains the output
+# on Success, the `error_code` is 0 and the result_dict contains the output
 az("group list") # list return tuple (exit_code, result_dict, log)
-az("group list")[0] # 1
+az("group list")[0] # 0
 az("group list")[1] # print result_dict 
 az("group list")[1][0]['id'] # enumerate the id of the first element in dictionary
 
