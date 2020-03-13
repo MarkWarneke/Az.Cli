@@ -19,3 +19,4 @@ exclude =
     # No need for tests
     tests/*
 max-complexity = 10
+

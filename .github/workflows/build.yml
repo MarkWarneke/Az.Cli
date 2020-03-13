@@ -22,20 +22,16 @@ jobs:
         python-version: 3.8
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        make init
     - name: Lint with flake8
       run: |
         pip install flake8
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        make lint
     - name: Test with pytest
       run: |
         pip install pytest
-        pytest
+        make test
       env: # Or as an environment variable
-        ENV_SP_NAME: ${{ secrets.AZ_SP_APP_ID }}
-        ENV_SP_SECRET: ${{ secrets.AZ_SP_SECRET }}
-        ENV_SP_TENANT: ${{ secrets.AZ_SP_TENANT }}
+        AZ_SP_APP_ID: ${{ secrets.AZ_SP_APP_ID }}
+        AZ_SP_SECRET: ${{ secrets.AZ_SP_SECRET }}
+        AZ_SP_TENANT: ${{ secrets.AZ_SP_TENANT }}
