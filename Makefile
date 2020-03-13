@@ -1,5 +1,5 @@
 init:
-	pip install -r REQUIREMENTS.txt
+	pip install -r requirements.txt
 
 lint:
 	# stop the build if there are Python syntax errors or undefined names
