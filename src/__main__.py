@@ -1,7 +1,5 @@
-
 # app.py
 import pprint
-import sys
 
 from az.cli import az, SUCCESS_CODE
 

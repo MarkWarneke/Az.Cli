@@ -1,11 +1,7 @@
 import os
-import re
-import setuptools
+import setuptools 
 
-REF_PREFIX = "refs/tags/"
-
-github_ref = os.environ["GITHUB_REF"]
-VERSION=re.sub(REF_PREFIX, '',github_ref)
+VERSION = os.environ["GITHUB_RUN_NUMBER"]
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -25,7 +21,7 @@ CLASSIFIERS = [
 ]
 
 setuptools.setup(
-    name="az.cli",
+    name="az-cli-MARKWARNEKE",
     version=VERSION,
     author="Mark Warneke",
     author_email="warneke.mark@gmail.com",
