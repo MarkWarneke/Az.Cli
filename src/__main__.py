@@ -18,13 +18,12 @@ def show(exit_code, result_dict, log):
     Prints an unsuccessfull command as a simple print
     """
     import pprint
-    pp = pprint.PrettyPrinter(indent=4)
+    pp = pprint.PrettyPrinter(indent=2)
 
-    if code == SUCCESS_CODE:
+    if exit_code == SUCCESS_CODE:
         pp.pprint(result_dict)
     else:
         print(log)
-
 
 if __name__ == "__main__":
     # execute only if run as a script
