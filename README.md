@@ -72,7 +72,7 @@ see [interactive](#interactive)
 ## Local Development
 
 - install [python3](https://www.python.org/downloads/)
-- install `REQUIREMENTS.txt
+- install `REQUIREMENTS.txt` using `make init`
 
 I recommend to use [Python3 virtual environments](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv).
 
