@@ -1,4 +1,3 @@
 knack
 azure-cli-core
 azure-cli
-exitstatus
