@@ -4,7 +4,7 @@ Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cl
 
 ## Usage
 
-Install the package using `pip`
+Install the package
 
 ```bash
 pip install az.cli
