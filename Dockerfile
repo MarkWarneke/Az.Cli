@@ -1,19 +1,16 @@
 FROM python:3.7-alpine
 
-# Update image
-RUN apk update \
-  && apk add \
-  build-base
+COPY REQUIREMENTS.txt /
 
-# Copy requirements
-COPY ./requirements.txt /app/
+RUN apk --update add python py-pip openssl ca-certificates py-openssl wget
+RUN apk --update add --virtual build-dependencies libffi-dev openssl-dev python-dev py-pip build-base \
+  && pip install --upgrade pip \
+  && pip install -r REQUIREMENTS.txt \
+  && apk del build-dependencies
+
+
+COPY src/ /app
 WORKDIR /app
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-
-
-# Copy all files to Docker container
-COPY . /app
 
 # Argument to python command
-ENTRYPOINT ["python", "./app"]
+ENTRYPOINT ["python"]

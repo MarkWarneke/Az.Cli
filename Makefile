@@ -1,12 +1,17 @@
 init:
-	pip install -r requirements.txt
+	pip install -r REQUIREMENTS.txt
 
 build:
 	docker build -t python-az:1.0 .
 
-run: build
-	docker
+create:
+	docker create -it --name python-az python-az:1.0
 
+start:
+	docker start python-az
+
+exec: start
+	docker exec -it python-az python
 
 test:
 	@echo "lol wut"

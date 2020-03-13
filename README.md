@@ -12,14 +12,23 @@ Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cl
 ## Example
 
 ```python
-from az.cli import az, ExitStatus
+from az.cli import az
+
 # AzResult = namedtuple('AzResult', ['exit_code', 'out', 'log'])
 exit_code, result_dict, logs = az("group show -n test")
+
+# On 0 (SUCCESS) print result_dict, otherwise get info from `logs`
+if exit_code == 0:
+    print (result_dict)
+else:
+    print(logs)
 ```
 
-You can run the command interactively to traverse the dictionary.  
-Navigate to `src`, run `python3`.  
-Import the library `from az.cli import az`, run  `az` command by invoke `az("<my command>")` to invoke Azure CLI.  
+### Interactive
+
+You can run the command interactively to traverse the dictionary.
+Navigate to `src`, run `python3`.
+Import the library `from az.cli import az`, run  `az` command by invoke `az("<my command>")` to invoke Azure CLI.
 
 ```python
 # cd src
@@ -28,4 +37,49 @@ from az.cli import az
 az("group list") # list return tuple (exitCode, resultSet)
 az("group list")[1] # return resultSet content <dict>
 az("group list")[1][0]['id'] # Enumerate id of first element in resultSet
+
+# On Error
+az("group show -n does-not-exsist") # list return tuple (exitCode, resultSet)
+az("group show -n does-not-exsist")[0] # 3
+az("group show -n does-not-exsist")[2] # Print the logs
+```
+
+## Build
+
+To build the image run the following in order.
+
+```bash
+# Runs docker build
+make build
+
+# Runs docker create
+make create
+
+# Runs docker start and exec
+make exec
+```
+
+### Run
+
+```bash
+make exec
+
+```
+
+see [interactive](#interactive)
+
+### Local Development
+
+To develop locally make sure to install Python3.
+I recommend to use Python3 virtual environments:
+
+```bash
+sudo apt-get install python3-venv
+```
+
+Then run:
+
+```bash
+python3 -m venv env
+make init
 ```
