@@ -3,18 +3,20 @@
 import pprint
 import sys
 
-from az.cli import az, ExitStatus
+from az.cli import az, SUCCESS_CODE
 
 
 def main():
+    show(*az("group show -n test"))
+    show(*az("group list"))
+
+
+def show(code, dict, log):
     pp = pprint.PrettyPrinter(indent=4)
-
-    code, result = az("group show -n test")
-
-    if code == ExitStatus.success:
-        pp.pprint(result)
+    if code == SUCCESS_CODE:
+        pp.pprint(dict)
     else:
-        print("error")
+        print(log)
 
 
 if __name__ == "__main__":

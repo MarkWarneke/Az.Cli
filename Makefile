@@ -16,5 +16,16 @@ run: start
 exec: start
 	docker exec -it python-az python
 
+package: clean
+	python3 setup.py sdist bdist_wheel
+
+upload: package
+	python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+clean:
+	rm -rf *.egg-info
+	rm -rf build
+	rm -rf dist
+
 test:
 	@echo "lol wut"

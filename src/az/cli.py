@@ -29,6 +29,10 @@ logging_level = logging.WARNING
 SUCCESS_CODE = 0
 
 
+def main():
+    az(sys.argv[0])
+
+
 def az(command):
     """
     Invoke Azure CLI command with a Python function call "az" command based on argument
@@ -105,3 +109,7 @@ def _parseResult(buffer):
             return json.loads("{}")
     except:
         raise BaseException("Error load value from StringIO")
+
+
+if __name__ == "__main__":
+    main()
