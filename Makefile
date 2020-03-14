@@ -38,6 +38,7 @@ clean:
 	rm -rf *.egg-info
 	rm -rf build
 	rm -rf dist
+	rm -rf .pytest_cache
 
 env:
 	source env/bin/activate 
