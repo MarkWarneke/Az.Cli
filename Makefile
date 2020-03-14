@@ -1,21 +1,43 @@
+
+VENV_PATH='env/bin/activate'
+ENVIRONMENT_VARIABLE_FILE='.env'
+DOCKER_NAME='python-az'
+DOCKER_TAG='1.0'
+
+define find.functions
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+endef
+
+help:
+	@echo 'The following commands can be used.'
+	@echo ''
+	$(call find.functions)
+
+
+init: ## Installs requirements
 init:
 	pip install -r requirements.txt
 
+lint: ## Runs flake8 on src, exit if critical rules are broken
 lint:
 	# stop the build if there are Python syntax errors or undefined names
 	flake8 src --count --select=E9,F63,F7,F82 --show-source --statistics
 	# exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
 	flake8 src --count --exit-zero --statistics
 
+package: ## Create package in dist
 package: clean
 	python3 setup/setup.py sdist bdist_wheel
 
+upload-test: ## Create package and upload to test.pypi
 upload-test: package
 	python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/* --non-interactive --verbose
 
+upload: ## Create package and upload to pypi
 upload: package
 	python3 -m twine upload dist/* --non-interactive
 
+clean: ## Remove build and cache files
 clean:
 	rm -rf *.egg-info
 	rm -rf build
@@ -24,12 +46,35 @@ clean:
 	# Remove all pycache
 	find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 
+env: ## Source venv and environment files for testing
 env:
-	source env/bin/activate 
-	# source .env
+	source $(VENV_PATH)
+	source $(ENVIRONMENT_VARIABLE_FILE)
 
-leave: clean 
+leave: ## Cleanup and deactivate venv
+leave: clean
 	deactivate
 
-test: env
+test: ## Run pytest
+test:
 	pytest . -p no:logging -p no:warnings
+
+build: ## Build docker image
+build:
+	docker build -t $(DOCKER_NAME):$(DOCKER_TAG) -f docker/Dockerfile .
+
+create: ## Create docker image
+create: build
+	docker create -it --name $(DOCKER_NAME) $(DOCKER_NAME):$(DOCKER_TAG)
+
+start: ## Build and start docker image
+start: build
+	docker start $(DOCKER_NAME)
+
+run: ## build, start and run docker image
+run: start
+	docker run -it $(DOCKER_NAME):$(DOCKER_TAG)
+
+exec: ## build, start and exec into docker image
+exec: start
+	docker exec -it $(DOCKER_NAME) python
