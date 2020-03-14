@@ -1,6 +1,6 @@
 # Az.Cli
 
-[![PyPi](https://img.shields.io/pypi/pyversions/az.cli.svg?maxAge=2592000)](https://pypi.python.org/pypi/az.cli)
+[![PyPi](https://img.shields.io/pypi/pyversions/az.cli)](https://pypi.python.org/pypi/az.cli)
 [![Build Status master](https://github.com/MarkWarneke/Az.Cli/workflows/Build/badge.svg?branch=master)](https://github.com/MarkWarneke/Az.Cli/actions?query=workflow%3ABuild)
 [![Build Status dev](https://github.com/MarkWarneke/Az.Cli/workflows/Build/badge.svg?branch=dev)](https://github.com/MarkWarneke/Az.Cli/actions?query=workflow%3ABuild)
 
