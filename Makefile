@@ -29,4 +29,4 @@ leave: clean
 	deactivate
 
 test: env
-	pytest
+	pytest . -p no:logging -p no:warnings
