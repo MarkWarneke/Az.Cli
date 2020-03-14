@@ -39,5 +39,12 @@ clean:
 	rm -rf build
 	rm -rf dist
 
-test:
+env:
+	source env/bin/activate 
+	source .env
+
+leave: clean 
+	deactivate
+
+test: env
 	pytest
