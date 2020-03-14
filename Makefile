@@ -41,7 +41,7 @@ clean:
 
 env:
 	source env/bin/activate 
-	source .env
+	#source .env
 
 leave: clean 
 	deactivate
