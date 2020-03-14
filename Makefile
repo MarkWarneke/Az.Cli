@@ -89,3 +89,4 @@ run: start
 exec: ## build, start and exec into docker image
 exec: start
 	docker exec -it $(DOCKER_NAME) python
+
