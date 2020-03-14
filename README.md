@@ -67,7 +67,9 @@ az("group show -n does-not-exsist")[2] # print the log
 I recommend to use [Python3 virtual environments](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv).
 
 ```bash
- ## sets up environment and installs requirements
+# sets up environment
+make env
+# installs requirements
 make init
 ```
 
