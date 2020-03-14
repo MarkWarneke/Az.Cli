@@ -59,25 +59,7 @@ az("group show -n does-not-exsist")[2] # print the log
 
 ## Build
 
-To build the image run the following in order.
-
-```bash
-# Runs docker build & create
-make create
-```
-
-## Run
-
-After the container is build & created you can run the `az.cli` interactivly.
-
-```bash
-# Run docker run
-make run
-```
-
-see [interactive](#interactive)
-
-## Local Development
+### Local Development
 
 - install [python3](https://www.python.org/downloads/)
 - install `REQUIREMENTS.txt` using `make init`
@@ -85,9 +67,26 @@ see [interactive](#interactive)
 I recommend to use [Python3 virtual environments](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv).
 
 ```bash
-python3 -m venv env
-source env/bin/activate
+ ## sets up environment and installs requirements
 make init
+```
+
+### Docker
+
+To build the image run the following in order.
+
+```bash
+# Runs docker build & create
+make create
+```
+
+#### Run
+
+After the container is build & created you can run the `az.cli` interactivly.
+
+```bash
+# Run docker run
+make run
 ```
 
 ## Known Bugs

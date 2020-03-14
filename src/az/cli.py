@@ -109,7 +109,7 @@ def _parseResult(buffer):
         output = buffer.getvalue()
 
         # Turn json string from output into dict
-        if output != "":    
+        if output != "":
             return json.loads(output)
         else:
             return json.loads("{}")
