@@ -1,6 +1,6 @@
 FROM python:3.7-alpine
 
-COPY REQUIREMENTS.txt /
+COPY ../requirements.txt /
 
 RUN apk --update add python py-pip openssl ca-certificates py-openssl wget
 RUN apk --update add --virtual build-dependencies libffi-dev openssl-dev python-dev py-pip build-base \
@@ -9,7 +9,7 @@ RUN apk --update add --virtual build-dependencies libffi-dev openssl-dev python-
   && apk del build-dependencies
 
 
-COPY src/ /app
+COPY ../src/ /app
 COPY import.py /app
 WORKDIR /app
 
