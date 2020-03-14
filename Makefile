@@ -8,7 +8,7 @@ lint:
 	flake8 src --count --exit-zero --statistics
 
 package: clean
-	python3 setup.py sdist bdist_wheel
+	python3 setup/setup.py sdist bdist_wheel
 
 upload-test: package
 	python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/* --non-interactive --verbose
