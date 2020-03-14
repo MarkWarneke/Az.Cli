@@ -59,25 +59,7 @@ az("group show -n does-not-exsist")[2] # print the log
 
 ## Build
 
-To build the image run the following in order.
-
-```bash
-# Runs docker build & create
-make create
-```
-
-## Run
-
-After the container is build & created you can run the `az.cli` interactivly.
-
-```bash
-# Run docker run
-make run
-```
-
-see [interactive](#interactive)
-
-## Local Development
+### Local Development
 
 - install [python3](https://www.python.org/downloads/)
 - install `REQUIREMENTS.txt` using `make init`
@@ -89,6 +71,10 @@ python3 -m venv env
 source env/bin/activate
 make init
 ```
+
+### Docker
+
+go to [docker](docker/README.md)
 
 ## Known Bugs
 
