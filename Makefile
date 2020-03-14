@@ -15,7 +15,7 @@ help:
 
 
 init: ## sets up environment and installs requirements
-init: env
+init:
 	pip install -r requirements.txt
 
 install: ## Installs development requirments
