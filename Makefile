@@ -14,9 +14,19 @@ help:
 	$(call find.functions)
 
 
-init: ## Installs requirements
-init:
+init: ## sets up environment and installs requirements
+init: env
 	pip install -r requirements.txt
+
+install: ## Installs development requirments
+install:
+	python -m pip install --upgrade pip
+	# Used for packaging and publishing
+	pip install setuptools wheel twine
+	# Used for linting
+	pip install flake8
+	# Used for testing
+	pip install pytest
 
 lint: ## Runs flake8 on src, exit if critical rules are broken
 lint:
@@ -48,6 +58,7 @@ clean:
 
 env: ## Source venv and environment files for testing
 env:
+	python3 -m venv env
 	source $(VENV_PATH)
 	source $(ENVIRONMENT_VARIABLE_FILE)
 
