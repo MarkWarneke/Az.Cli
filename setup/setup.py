@@ -1,17 +1,14 @@
-import os
-import re
+
 import setuptools
-
-REF_PREFIX = "refs/tags/"
-
-github_ref = os.environ["GITHUB_REF"]
-VERSION=re.sub(REF_PREFIX, '',github_ref)
+from util import getVariables
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 with open('requirements.txt') as f:
     required = f.read().splitlines()
+
+NAME, VERSION = getVariables()
 
 CLASSIFIERS = [
     'Development Status :: 4 - Beta',
@@ -25,7 +22,7 @@ CLASSIFIERS = [
 ]
 
 setuptools.setup(
-    name="az.cli",
+    name=NAME,
     version=VERSION,
     author="Mark Warneke",
     author_email="warneke.mark@gmail.com",

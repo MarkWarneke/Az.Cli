@@ -1,7 +1,8 @@
 # Az.Cli
 
-[![PyPi](https://img.shields.io/pypi/pyversions/az.cli.svg?maxAge=2592000)](https://pypi.python.org/pypi/az.cli)
-[![Build Status](https://github.com/MarkWarneke/Az.Cli/workflows/Build/badge.svg?branch=dev)](https://github.com/MarkWarneke/Az.Cli/actions?query=workflow%3ABuild)
+[![PyPi](https://img.shields.io/pypi/pyversions/az.cli)](https://pypi.python.org/pypi/az.cli)
+[![Build Status master](https://github.com/MarkWarneke/Az.Cli/workflows/Build/badge.svg?branch=master)](https://github.com/MarkWarneke/Az.Cli/actions?query=workflow%3ABuild)
+[![Build Status dev](https://github.com/MarkWarneke/Az.Cli/workflows/Build/badge.svg?branch=dev)](https://github.com/MarkWarneke/Az.Cli/actions?query=workflow%3ABuild)
 
 Python [azure.cli.core](https://github.com/Azure/azure-cli/blob/dev/src/azure-cli-core/azure/cli/core/__init__.py) interface to execute `az` [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) commands in python.
 
@@ -58,25 +59,7 @@ az("group show -n does-not-exsist")[2] # print the log
 
 ## Build
 
-To build the image run the following in order.
-
-```bash
-# Runs docker build & create
-make create
-```
-
-## Run
-
-After the container is build & created you can run the `az.cli` interactivly.
-
-```bash
-# Run docker run
-make run
-```
-
-see [interactive](#interactive)
-
-## Local Development
+### Local Development
 
 - install [python3](https://www.python.org/downloads/)
 - install `REQUIREMENTS.txt` using `make init`
@@ -84,9 +67,28 @@ see [interactive](#interactive)
 I recommend to use [Python3 virtual environments](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv).
 
 ```bash
-python3 -m venv env
-source env/bin/activate
+# sets up environment
+make env
+# installs requirements
 make init
+```
+
+### Docker
+
+To build the image run the following in order.
+
+```bash
+# Runs docker build & create
+make create
+```
+
+#### Run
+
+After the container is build & created you can run the `az.cli` interactivly.
+
+```bash
+# Run docker run
+make run
 ```
 
 ## Known Bugs

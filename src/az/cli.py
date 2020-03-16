@@ -19,7 +19,7 @@ from knack.log import CLI_LOGGER_NAME
 # Create default shell to run commands
 _cli = get_default_cli()
 
-AzResult = namedtuple('AzResult', ['exit_code', 'out', 'log'])
+AzResult = namedtuple('AzResult', ['exit_code', 'result_dict', 'log'])
 
 # adjust the logging level if you want INFO or DEBUG log
 logging_level = logging.WARNING
@@ -28,7 +28,15 @@ SUCCESS_CODE = 0
 
 
 def main():
-    az(sys.argv[0])
+    error_code, result_dict, log = az(sys.argv[1])
+
+    import pprint
+    pp = pprint.PrettyPrinter(indent=2)
+
+    if error_code == SUCCESS_CODE:
+        pp.pprint(result_dict)
+    else:
+        print(log)
 
 
 def az(command):
@@ -65,13 +73,17 @@ def az(command):
     cli_logger = logging.getLogger(CLI_LOGGER_NAME)
     cli_handler = logging.StreamHandler(stream=log_buf)
     cli_handler.setLevel(logging_level)
-    cli_logger.addHandler(cli_handler)
 
     try:
         # Split command https://docs.python.org/3/library/shlex.html#shlex.split
         args = shlex.split(command)
 
-        # FIXME: Intercept 'loging' command, it blocks the execution
+        # Intercept 'loging' command, it blocks the execution until logged in via device login
+        # Login prompt is warning output, use default handler
+        if args[0] == "login":
+            print("login found")
+        else:
+            cli_logger.addHandler(cli_handler)
 
         # exit code 0 or 1
         exit_code = _cli.invoke(
@@ -90,7 +102,7 @@ def az(command):
 
 def _parseResult(buffer):
     """
-    Parse the buffer content into a dict using json.load
+    Parse the string buffer content into a dict using json.loads
 
     :param buffer: The StringIO buffer to retrieve value
 
@@ -100,10 +112,9 @@ def _parseResult(buffer):
         # Retrieve output buffer
         output = buffer.getvalue()
 
+        # Turn json string from output into dict
         if output != "":
-            # Turn json output into dict
-            result = json.loads(output)
-            return result
+            return json.loads(output)
         else:
             return json.loads("{}")
     except SystemExit as ex:
