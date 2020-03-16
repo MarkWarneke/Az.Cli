@@ -9,6 +9,8 @@ def main():
     """
     Demonstrage the usage of `az("<Command>")` by invoking one failing and one working cmd
     """
+    show(*az("login"))
+
     show(*az("group show -n test"))
     show(*az("group list"))
 
