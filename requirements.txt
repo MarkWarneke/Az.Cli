@@ -1,3 +1,3 @@
-knack
-azure-cli-core
-azure-cli
+knack:0.6.3
+azure-cli-core:2.3.0
+azure-cli:2.3.0
