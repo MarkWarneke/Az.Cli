@@ -90,7 +90,3 @@ After the container is build & created you can run the `az.cli` interactivly.
 # Run docker run
 make run
 ```
-
-## Known Bugs
-
-- `az('login')` https://github.com/MarkWarneke/Az.Cli/issues/1
