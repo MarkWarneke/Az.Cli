@@ -5,7 +5,6 @@
 # Based on https://github.com/Azure/azure-cli/blob/dev/src/azure-cli-core/azure/cli/core/__init__.py
 # commit 8e369b9d2d63ddf5c6678ee710905bf9e5028f99
 # --------------------------------------------------------------------------------------------
-
 import sys
 from io import StringIO
 import json
@@ -16,8 +15,6 @@ from collections import namedtuple
 from azure.cli.core import get_default_cli
 from knack.log import CLI_LOGGER_NAME
 
-# Create default shell to run commands
-_cli = get_default_cli()
 
 AzResult = namedtuple('AzResult', ['exit_code', 'result_dict', 'log'])
 
@@ -58,6 +55,9 @@ def az(command):
     :param command: the command string, without az
     :return: a named tuple consisting of exit_code, out and log
     """
+
+    # Create default shell to run commands
+    _cli = get_default_cli()
 
     # Create string buffer to get the result and logs
     stdout_buf = StringIO()
