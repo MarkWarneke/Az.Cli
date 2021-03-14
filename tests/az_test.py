@@ -10,8 +10,9 @@ AZ_FAIL_COMMAND = "group show -n this-does-not-exist"
 
 def test_az(az_login):
     error_code, result_dict, log = az(AZ_SUCCESSFUL_COMMAND)
-    assert error_code == 0
     assert log == ""
+    assert error_code == 0
+    
 
 
 def test_az_failure(az_login):
