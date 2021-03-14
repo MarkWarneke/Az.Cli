@@ -5,7 +5,6 @@
 # Based on https://github.com/Azure/azure-cli/blob/dev/src/azure-cli-core/azure/cli/core/__init__.py
 # commit 8e369b9d2d63ddf5c6678ee710905bf9e5028f99
 # --------------------------------------------------------------------------------------------
-
 import sys
 from io import StringIO
 import json
@@ -15,7 +14,6 @@ from collections import namedtuple
 
 from azure.cli.core import get_default_cli
 from knack.log import CLI_LOGGER_NAME
-
 
 
 AzResult = namedtuple('AzResult', ['exit_code', 'result_dict', 'log'])
