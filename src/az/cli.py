@@ -75,13 +75,17 @@ def az(command):
     cli_logger = logging.getLogger(CLI_LOGGER_NAME)
     cli_handler = logging.StreamHandler(stream=log_buf)
     cli_handler.setLevel(logging_level)
-    cli_logger.addHandler(cli_handler)
 
     try:
         # Split command https://docs.python.org/3/library/shlex.html#shlex.split
         args = shlex.split(command)
 
-        # FIXME: Intercept 'loging' command, it blocks the execution
+        # Intercept 'loging' command, it blocks the execution until logged in via device login
+        # Login prompt is warning output, use default handler
+        if args[0] == "login":
+            print("login found")
+        else:
+            cli_logger.addHandler(cli_handler)
 
         # exit code 0 or 1
         exit_code = _cli.invoke(
@@ -111,7 +115,7 @@ def _parseResult(buffer):
         output = buffer.getvalue()
 
         # Turn json string from output into dict
-        if output != "":    
+        if output != "":
             return json.loads(output)
         else:
             return json.loads("{}")
