@@ -156,3 +156,32 @@ After the container is build & created you can run the `az.cli` interactivly.
 # Run docker run
 make run
 ```
+
+### Augmenting official Azure CLI Docker image
+
+To those who want to use this wrapper with the [official Azure CLI Docker image](https://docs.microsoft.com/en-us/cli/azure/run-azure-cli-docker), then the quickest way is to mimic the following:
+
+```text
+FROM mcr.microsoft.com/azure-cli:latest
+
+ENV PATH="/venv/bin:${PATH}"
+
+RUN : \
+    && python3 -m venv /venv \
+    && pip install --disable-pip-version-check --no-cache-dir --no-dependencies az.cli
+
+ENV PYTHONPATH="/usr/local/lib/python3.8/site-packages"
+```
+
+What that does is:
+
+- adds the virtual environment directory to the `PATH` environment variable
+- installs this project into that virtual environment _without_ installing dependencies
+  - as they are already in the original image
+  - this is what `--no-dependencies` does
+- sets the `PYTHONPATH` environment variable to the equal the path at which the already included Azure CLI modules exist
+  - it's added at the end as opposed to the first `ENV` line to avoid overriding the path at which this project is installed at
+
+The `--disable-pip-version-check` option is set as it offers no tangible benefit to check Pip's version when building. The same goes for `--no-cache-dir` as the resulting image will be smaller due to Pip not having cached anything.
+
+It's not possible, [that I know of](https://github.com/moby/moby/issues/29110) to set this dynamically, so this needs to be validated against the version of Python used in [their Dockerfile](https://github.com/Azure/azure-cli/blob/dev/Dockerfile).
