@@ -161,7 +161,7 @@ make run
 
 To those who want to use this wrapper with the [official Azure CLI Docker image](https://docs.microsoft.com/en-us/cli/azure/run-azure-cli-docker), then the quickest way is to mimic the following:
 
-```text
+```dockerfile
 FROM mcr.microsoft.com/azure-cli:latest
 
 ENV PATH="/venv/bin:${PATH}"
